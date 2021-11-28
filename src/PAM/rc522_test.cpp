@@ -1,6 +1,7 @@
 #include<security/pam_appl.h>
 #include<security/pam_misc.h>
 #include<iostream>
+//#include"SerialClass.h"
 
 const struct pam_conv conv = {
     misc_conv,
@@ -28,9 +29,7 @@ int main(){
             Await RFID Card data..
         */
         char *s;
-        std::cout<<"Tap Card..\n";
-        std::cin>>s;
-        std::cout<<"Authentication successful.\n";
+        
     }else{
         std::cout<<"Authentication failed.\n";
     }

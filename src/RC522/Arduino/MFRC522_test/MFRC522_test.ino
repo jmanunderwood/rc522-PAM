@@ -2,7 +2,7 @@
 #include <MFRC522.h>
 
 #define RST_PIN         5           
-#define SS_PIN          10          
+#define SS_PIN          53          
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);   
 
@@ -32,16 +32,16 @@ void loop() {
   }
   Serial.println(F("Card Detected.."));
 
-  mfrc522.PICC_DumpToSerial(&mfrc522.uid); //Dump raw data
+  mfrc522.PICC_DumpDetailsToSerial(&mfrc522.uid); //Dump raw data
 
-  byte buff_1[18]
+  byte buff_1[18];
 
-  block=10;
+  block=1;
   len=18;
 /*
   Authenticate the card using Key A, and read the Username
 */
-  status=mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, 10, &key, &mfrc522.uid);   
+  status=mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &mfrc522.uid);   
   if(status != MFRC522::STATUS_OK){
     Serial.print("Authentication Failure: ");
     Serial.println(mfrc522.GetStatusCodeName(status));
@@ -54,20 +54,18 @@ void loop() {
     Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
-
+  Serial.print("Username: ");
   for(uint8_t i=0;i<16;i++){
-    if(buff_1[i]!=32){
-      Serial.write(buff_1[i]);
-    }
+    Serial.write(buff_1[i]);
   }
 
   byte buff2[18];
-  block=9;
+  block=4;
   /*
     Authenticate the card using Key A and read the password
   */
 
-  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A,9,&key,&mfrc522.uid);   //Auth keymode A
+  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A,block,&key,&mfrc522.uid);   //Auth keymode A
   if(status!=MFRC522::STATUS_OK){
     Serial.print("Authentication Failure: ");
     Serial.println(mfrc522.GetStatusCodeName(status));
@@ -75,9 +73,9 @@ void loop() {
   }
 
   status = mfrc522.MIFARE_Read(block, buff2, &len);   //Read in the password
-  if(status!=MFRC522:STATUS_OK){
+  if(status!=MFRC522::STATUS_OK){
     Serial.print("Read Failure: ");
-    Searial.println(mfrc522.GetStatusCodeName(status));
+    Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
 
@@ -89,6 +87,6 @@ void loop() {
   Serial.println("---------------");
 
   mfrc522.PICC_HaltA();
-  mfrc522.PCD:StopCrypto1();
+  mfrc522.PCD_StopCrypto1();
 
 }
