@@ -30,13 +30,13 @@ void loop() {
   if(!mfrc522.PICC_ReadCardSerial()){   //can the card be read from?
     return;
   }
-  Serial.println(F("Card Detected.."));
+  //Serial.println(F("Card Detected.."));
 
-  mfrc522.PICC_DumpDetailsToSerial(&mfrc522.uid); //Dump raw data
+  //mfrc522.PICC_DumpDetailsToSerial(&mfrc522.uid); //Dump raw data
 
   byte buff_1[18];
 
-  block=1;
+  block=1;  
   len=18;
 /*
   Authenticate the card using Key A, and read the Username
@@ -54,7 +54,7 @@ void loop() {
     Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
-  Serial.print("Username: ");
+  //Serial.print("Username: ");
   for(uint8_t i=0;i<16;i++){
     Serial.write(buff_1[i]);
   }
@@ -83,8 +83,8 @@ void loop() {
     Serial.write(buff2[i]);
   }
 
-  Serial.println("Read Finished.");
-  Serial.println("---------------");
+  //Serial.println("Read Finished.");
+  //Serial.println("---------------");
 
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
