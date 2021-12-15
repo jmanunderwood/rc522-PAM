@@ -13,10 +13,12 @@ Magic!
 But also.. 
 The PAM module itself opens and reads from the serial port, 
 on which the Arduino is going to transmit the information read from the RFID chip. 
+
 Once passed the username from the chip, 
 the module compares it with the login name of the user trying to authenticate. 
 If this fails, the module returns an Auth Error and lets the user try again. If it succeeds, 
 then the user is allowed to input their password and continue  authenticating.
+
 In order for this to occur, you need to add the line "auth required pam_rc522.so" 
 to the top of your /etc/pam.d/common-auth file 
 (or other pam stack config file for another service). 
@@ -46,8 +48,8 @@ This will require the RFID card to be scanned, and the usernames to match before
 ### Step 3:
 Make **Absolutely Sure** that the username on the card is correct for your username, 
 and that the system can find the module before you restart or log out. 
-Otherwise you may have to boot from another drive, 
-and revert the common-auth file before being able to authenticate again 
+Otherwise you may have to boot to another OS, 
+and revert changes to the common-auth file before being able to authenticate again 
 (learned this one the hard way).
 
 
