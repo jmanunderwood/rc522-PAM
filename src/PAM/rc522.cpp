@@ -57,7 +57,7 @@ PAM_EXTERN int pam_sm_authenticate(pam_handle_t *pamh, int flags, int argc, cons
             std::cout<<"."<<std::endl;
         }
     }
-    //Isolate the username, and trim the whitespace
+    //Isolate the username, and then trim the whitespace
     ID=serial_in.substr(0,serial_in.find('\n'));
     ID.erase(ID.find_first_of(' '), ID.length()-ID.find_first_of(' '));
 
@@ -67,7 +67,7 @@ PAM_EXTERN int pam_sm_authenticate(pam_handle_t *pamh, int flags, int argc, cons
 
     card_uname = const_cast<char*>(ID.c_str());
     retval = pam_get_user(pamh,&uname,"Username: ");
-    //allow the user to continue logging in if the username on the card matches the current user
+    //Allow the user to continue logging in if the username on the card matches the current user
     if (strcmp(uname, card_uname)==0){
         retval=PAM_SUCCESS;
         std::cout<<"Card Success.";

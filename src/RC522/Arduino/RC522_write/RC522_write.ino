@@ -16,10 +16,10 @@ void loop() {
   MFRC522::MIFARE_Key key;
   for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
-  if(!mfrc522.PICC_IsNewCardPresent()){   //wait for card
+  if(!mfrc522.PICC_IsNewCardPresent()){   //Wait for card
     return;
   }
-  if(!mfrc522.PICC_ReadCardSerial()){   //can the card be read from?
+  if(!mfrc522.PICC_ReadCardSerial()){   //Can the card be read from?
     return;
   }
 

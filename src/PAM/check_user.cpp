@@ -20,10 +20,10 @@ int main(int argc, char *argv[])
     retval = pam_start("check_user", user, &conv, &pamh);
 
     if (retval == PAM_SUCCESS)
-        retval = pam_authenticate(pamh, 0);    // is user really user? 
+        retval = pam_authenticate(pamh, 0);    // Is user really user? 
 
     if (retval == PAM_SUCCESS)
-        retval = pam_acct_mgmt(pamh, 0);       //is user permitted access? 
+        retval = pam_acct_mgmt(pamh, 0);       //Is user permitted access? 
 
     if (retval == PAM_SUCCESS) {
         fprintf(stdout, "Authenticated\n");
