@@ -45,6 +45,7 @@ void loop() {
   len=Serial.readBytesUntil('#', (char*)buffer, 30);
   for(byte i = len;i<30;i++) buffer[i] = ' ';
 
+  //Write username to blocks 1 and 2
   block = 1;
   
   status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(mfrc522.uid));
@@ -77,9 +78,7 @@ void loop() {
     return;
   }
 
-  //Password
-
-
+  //Password to blocks 4 and 5
   Serial.println(F("Type Password, ending with #"));
   len = Serial.readBytesUntil('#', (char *) buffer, 20) ; 
   for (byte i = len; i < 20; i++) buffer[i] = ' ';     
