@@ -42,7 +42,7 @@ Put bin/pam_rc522.so in your lib/security directory
 ### Step 2:
 As stated above, add the line "auth required pam_rc522.so" to the top of your /etc/pam.d/common-auth file.
 This will require the RFID card to be scanned, and the usernames to match before authenticating anywhere on the system.
-## Step 3:
+### Step 3:
 Make **Absolutely Sure** that the username on the card is correct for your username, 
 and that the system can find the module before you restart or log out. 
 Otherwise you may have to boot from another drive, 
