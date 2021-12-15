@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
     if (retval == PAM_SUCCESS)
         retval = pam_acct_mgmt(pamh, 0);       //is user permitted access? 
 
-
     if (retval == PAM_SUCCESS) {
         fprintf(stdout, "Authenticated\n");
     } else {
