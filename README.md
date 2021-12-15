@@ -1,5 +1,6 @@
 # rc522 PAM
 CSCI-484 Semester Project, James Underwood
+
 A simple PAM module to interface with an RC522 RFID Card reader that requires an RFID card with the user's login name to be scanned.
 Using an Arduino Mega 2560 for the serial interface.
 
