@@ -56,6 +56,6 @@ and revert changes to the common-auth file before being able to authenticate aga
 Now you shoud only be able to authenticate on your system, if you are able to scan the correct RFID card for your user.
 
 
-If any of you reading this is brave enough to install my software on your machine, 
+If anyone of you reading this is brave enough to install my software on your machine, 
 I would appreciate it if your let me know how it goes, 
 and open an Issue here if you encounter a problem along the way.
