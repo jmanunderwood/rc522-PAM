@@ -66,13 +66,13 @@ PAM_EXTERN int pam_sm_authenticate(pam_handle_t *pamh, int flags, int argc, cons
     const char *uname="";
 
     card_uname = const_cast<char*>(ID.c_str());
-    //retval = pam_get_user(pamh,&uname,"Username: ");
-    uname="guest";
-    std::cout<<uname<<"."<<std::endl;
-    std::cout<<card_uname<<"."<<std::endl<<strcmp(uname,card_uname);
-    if (uname==card_uname){
+    retval = pam_get_user(pamh,&uname,"Username: ");
+    //allow the user to continue logging in if the username on the card matches the current user
+    if (strcmp(uname, card_uname)==0){
         retval=PAM_SUCCESS;
         std::cout<<"Card Success.";
+    }else{
+        retval=PAM_AUTH_ERR;
     }
 
     if (retval!=PAM_SUCCESS){

@@ -43,6 +43,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "check_user: failed to release authenticator\n");
         exit(1);
     }
-
+    
     return ( retval == PAM_SUCCESS ? 0:1 );       /* indicate success */
 }
