@@ -4,7 +4,8 @@ A simple PAM module to interface with an RC522 RFID Card reader that requires an
 Using an Arduino Mega 2560 for the serial interface.
 
 ## What exactly does this do?
-    i dunno man, but it's supposed to require an RFID card to be scanned in order to authenticate a user on a linux system.
+    i dunno man, 
+    but it's supposed to require an RFID card to be scanned in order to authenticate a user on a linux system.
     Maybe it works.. Maybe it doesn't
 
 ## Well how does it do that?
@@ -18,8 +19,10 @@ Using an Arduino Mega 2560 for the serial interface.
     If this fails, the module returns an Auth Error and lets the user try again. If it succeeds, 
     then the user is allowed to input their password and continue  authenticating.
     In order for this to occur, you need to add the line "auth required pam_rc522.so" 
-    to the top of your /etc/pam.d/common-auth file (or other pam stack config file for another service). 
-    This makes sure that whenever a user tries to authenticate on the system, the rc522 module is called first.
+    to the top of your /etc/pam.d/common-auth file 
+    (or other pam stack config file for another service). 
+    This makes sure that whenever a user tries to authenticate on the system, 
+    the rc522 module is called first.
 
 ## Requirements
 -This being a PAM module, a linux system is required.
