@@ -26,10 +26,10 @@ This makes sure that whenever a user tries to authenticate on the system,
 the rc522 module is called first.
 
 ## Requirements
-    -This being a PAM module, a linux system is required.
-    -An arduino is also required for writing to and reading from an RFID card
-    -The two arduino sketches require the MFRC522 library
-    -Obviously, also required is a RFID-RC522 card reader, and accompanying RFID card
+- This being a PAM module, a linux system is required.
+- An arduino is also required for writing to and reading from an RFID card
+- The two arduino sketches require the MFRC522 library
+- Obviously, also required is a RFID-RC522 card reader, and accompanying RFID card
 
 ## Setup
 Under src/RC522/RC522_write, there is an arduino sketch which will write your username to the RFID card. 
