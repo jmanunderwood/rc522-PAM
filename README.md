@@ -3,13 +3,13 @@ CSCI-484 Semester Project, James Underwood
 A simple PAM module to interface with an RC522 RFID Card reader that requires an RFID card with the user's login name to be scanned.
 Using an Arduino Mega 2560 for the serial interface.
 
-## >What exactly does this do?
+## What exactly does this do?
     i dunno man, 
     but it's supposed to require an RFID card to be scanned
     in order to authenticate a user on a linux system.
     Maybe it works.. Maybe it doesn't
 
-## >Well how does it do that?
+## Well how does it do that?
     hmm...
     Magic!
     But also.. 
