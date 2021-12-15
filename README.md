@@ -12,7 +12,7 @@ Maybe it works.. Maybe it doesn't
 Magic!
 But also.. 
 The PAM module itself opens and reads from the serial port, 
-on which the Arduino is going to transmit the information read from the RFID chip. 
+over which the Arduino is going to transmit the information read from the RFID chip. 
 
 Once passed the username from the chip, 
 the module compares it with the login name of the user trying to authenticate. 
