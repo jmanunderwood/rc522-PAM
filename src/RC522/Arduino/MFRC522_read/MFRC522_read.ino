@@ -30,17 +30,13 @@ void loop() {
   if(!mfrc522.PICC_ReadCardSerial()){   //can the card be read from?
     return;
   }
-  //Serial.println(F("Card Detected.."));
-
-  //mfrc522.PICC_DumpDetailsToSerial(&mfrc522.uid); //Dump raw data
 
   byte buff_1[18];
 
   block=1;  
   len=18;
-/*
-  Authenticate the card using Key A, and read the Username
-*/
+
+  //Authenticate the card using Key A, and read the Username
   status=mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &mfrc522.uid);   
   if(status != MFRC522::STATUS_OK){
     Serial.print("Authentication Failure: ");
@@ -48,31 +44,32 @@ void loop() {
     return;
   }
 
-  status = mfrc522.MIFARE_Read(block, buff_1, &len); //Read in Username
+  //Read in Username
+  status = mfrc522.MIFARE_Read(block, buff_1, &len); 
   if(status != MFRC522::STATUS_OK){
     Serial.print("Read Failure: ");
     Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
-  //Serial.print("Username: ");
+
   for(uint8_t i=0;i<16;i++){
     Serial.write(buff_1[i]);
   }
 
   byte buff2[18];
   block=4;
-  /*
-    Authenticate the card using Key A and read the password
-  */
 
+  //Authenticate the card using Key A and read the password
+  //TODO: Password currently not implemented
   status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A,block,&key,&mfrc522.uid);   //Auth keymode A
   if(status!=MFRC522::STATUS_OK){
     Serial.print("Authentication Failure: ");
     Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
-
-  status = mfrc522.MIFARE_Read(block, buff2, &len);   //Read in the password
+  
+  //Read in the password
+  status = mfrc522.MIFARE_Read(block, buff2, &len);   
   if(status!=MFRC522::STATUS_OK){
     Serial.print("Read Failure: ");
     Serial.println(mfrc522.GetStatusCodeName(status));
@@ -82,9 +79,6 @@ void loop() {
   for(uint8_t i=0;i<16; i++){
     Serial.write(buff2[i]);
   }
-
-  //Serial.println("Read Finished.");
-  //Serial.println("---------------");
 
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();

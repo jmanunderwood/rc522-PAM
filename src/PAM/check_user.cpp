@@ -17,20 +17,14 @@ int main(int argc, char *argv[])
         user = argv[1];
     }
 
-    if(argc > 2) {
-        fprintf(stderr, "Usage: check_user [username]\n");
-        exit(1);
-    }
-
     retval = pam_start("check_user", user, &conv, &pamh);
 
     if (retval == PAM_SUCCESS)
-        retval = pam_authenticate(pamh, 0);    /* is user really user? */
+        retval = pam_authenticate(pamh, 0);    // is user really user? 
 
     if (retval == PAM_SUCCESS)
-        retval = pam_acct_mgmt(pamh, 0);       /* permitted access? */
+        retval = pam_acct_mgmt(pamh, 0);       //is user permitted access? 
 
-    /* This is where we have been authorized or not. */
 
     if (retval == PAM_SUCCESS) {
         fprintf(stdout, "Authenticated\n");
@@ -38,11 +32,11 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Not Authenticated\n");
     }
 
-    if (pam_end(pamh,retval) != PAM_SUCCESS) {     /* close Linux-PAM */
+    if (pam_end(pamh,retval) != PAM_SUCCESS) { 
         pamh = NULL;
         fprintf(stderr, "check_user: failed to release authenticator\n");
         exit(1);
     }
     
-    return ( retval == PAM_SUCCESS ? 0:1 );       /* indicate success */
+    return ( retval == PAM_SUCCESS ? 0:1 );       
 }
