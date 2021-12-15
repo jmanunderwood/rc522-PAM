@@ -8,7 +8,6 @@ i dunno man, but it's supposed to require an RFID card to be scannedin order to 
 Maybe it works.. Maybe it doesn't
 
 ## Well how does it do that?
-hmm...
 Magic!
 But also.. 
 The PAM module itself opens and reads from the serial port, 
